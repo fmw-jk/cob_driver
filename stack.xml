@@ -1,30 +1,58 @@
 <stack>
+  <name>cob_driver</name>
+  <version>0.4.8</version>
   <description brief="Care-O-bot stack with driver packages">
 
      The cob_driver stack includes packages that provide access to the Care-O-bot hardware through ROS messages, services and actions. E.g. for mobile base, arm, camera sensors, laser scanners, etc...
 
   </description>
-  <author>Maintained by Florian Weisshardt</author>
+  <author>Florian Weisshardt</author>
+  <maintainer>Florian Weisshardt</maintainer>
+
   <license>LGPL</license>  
+  <copyright>Fraunhofer-Institute for Manufacturing Engineering and Automation IPA</copyright>
+
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/cob_driver</url>
-  <depend stack="audio_common" /> <!-- sound_play -->
-  <depend stack="cob_common" /> <!-- cob_srvs, brics_actuator -->
-  <depend stack="cob_extern" /> <!-- libpcan, libphidgets, libntcan -->
-  <depend stack="common" /> <!-- actionlib -->
-  <depend stack="common_msgs" /> <!-- nav_msgs, geometry_msgs, sensor_msgs, diagnostic_msgs, visualization_msgs -->
-  <depend stack="control" /> <!-- control_msgs -->
-  <depend stack="diagnostics" /> <!-- diagnostic_updater -->
-  <depend stack="driver_common" /> <!-- dynamic_reconfigure -->
-  <depend stack="geometry" /> <!-- tf -->
-  <depend stack="laser_drivers" /> <!-- hokuyo_node -->
-  <depend stack="laser_pipeline" /> <!-- laser_geometry -->
-  <depend stack="navigation" /> <!-- move_base_msgs -->
-  <depend stack="orocos_kinematics_dynamics" /> <!-- kdl -->
-  <depend stack="pr2_common" /> <!-- pr2_msgs -->
-  <depend stack="pr2_controllers" /> <!-- pr2_controllers_msgs -->
-  <depend stack="robot_model" /> <!-- urdf -->
-  <depend stack="ros" />
-  <depend stack="ros_comm" /> <!-- std_msgs, rostest, rospy, roscpp, message_filters -->
+
+  <build_depends>catkin</build_depends>
+  <build_depends>genmsg</build_depends>
+  <build_depends>audio_common</build_depends> <!-- sound_play -->
+  <build_depends>cob_common</build_depends> <!-- cob_srvs, brics_actuator -->
+  <build_depends>cob_extern</build_depends> <!-- libpcan, libphidgets, libntcan -->
+  <build_depends>common</build_depends> <!-- actionlib -->
+  <build_depends>common_msgs</build_depends> <!-- nav_msgs, geometry_msgs, sensor_msgs, diagnostic_msgs, visualization_msgs -->
+  <build_depends>control</build_depends> <!-- control_msgs -->
+  <build_depends>diagnostics</build_depends> <!-- diagnostic_updater -->
+  <build_depends>driver_common</build_depends> <!-- dynamic_reconfigure -->
+  <build_depends>geometry</build_depends> <!-- tf -->
+  <build_depends>laser_drivers</build_depends> <!-- hokuyo_node -->
+  <build_depends>laser_pipeline</build_depends> <!-- laser_geometry -->
+  <build_depends>navigation</build_depends> <!-- move_base_msgs -->
+  <build_depends>orocos_kinematics_dynamics</build_depends> <!-- kdl -->
+  <build_depends>pr2_common</build_depends> <!-- pr2_msgs -->
+  <build_depends>pr2_controllers</build_depends> <!-- pr2_controllers_msgs -->
+  <build_depends>robot_model</build_depends> <!-- urdf -->
+  <build_depends>ros</build_depends>
+  <build_depends>ros_comm</build_depends> <!-- std_msgs, rostest, rospy, roscpp, message_filters -->
+
+  <depends>audio_common</depends> <!-- sound_play -->
+  <depends>cob_common</depends> <!-- cob_srvs, brics_actuator -->
+  <depends>cob_extern</depends> <!-- libpcan, libphidgets, libntcan -->
+  <depends>common</depends> <!-- actionlib -->
+  <depends>common_msgs</depends> <!-- nav_msgs, geometry_msgs, sensor_msgs, diagnostic_msgs, visualization_msgs -->
+  <depends>control</depends> <!-- control_msgs -->
+  <depends>diagnostics</depends> <!-- diagnostic_updater -->
+  <depends>driver_common</depends> <!-- dynamic_reconfigure -->
+  <depends>geometry</depends> <!-- tf -->
+  <depends>laser_drivers</depends> <!-- hokuyo_node -->
+  <depends>laser_pipeline</depends> <!-- laser_geometry -->
+  <depends>navigation</depends> <!-- move_base_msgs -->
+  <depends>orocos_kinematics_dynamics</depends> <!-- kdl -->
+  <depends>pr2_common</depends> <!-- pr2_msgs -->
+  <depends>pr2_controllers</depends> <!-- pr2_controllers_msgs -->
+  <depends>robot_model</depends> <!-- urdf -->
+  <depends>ros</depends>
+  <depends>ros_comm</depends> <!-- std_msgs, rostest, rospy, roscpp, message_filters -->
 
 </stack>
