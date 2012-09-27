@@ -1,36 +1,36 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+project(cob_trajectory_controller)
 
-# Set the build type.  Options are:
-#  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
-#  Debug          : w/ debug symbols, w/o optimization
-#  Release        : w/o debug symbols, w/ optimization
-#  RelWithDebInfo : w/ debug symbols, w/ optimization
-#  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
-#set(ROS_BUILD_TYPE RelWithDebInfo)
+catkin_project(${PROJECT_NAME}
+	INCLUDE_DIRS common/include
+	DEPENDS Boost Orocos-KDL
+)
 
-rosbuild_init()
-rosbuild_add_boost_directories()
+include_directories(common/include)
 
-#set the default path for built executables to the "bin" directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/ros/bin)
-#set the default path for built libraries to the "lib" directory
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/ros/lib)
+# service generation
+find_package(genmsg REQUIRED)
+find_package(ROS REQUIRED std_msgs)
+include_directories(${ROS_INCLUDE_DIRS})
 
-#uncomment if you have defined messages
-rosbuild_genmsg()
-#uncomment if you have defined services
-rosbuild_gensrv()
+add_service_files(DIRECTORY srv FILES SetFloat.srv)
 
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/common/include)
+generate_messages(DEPENDENCIES std_msgs)
 
-#common commands for building c++ executables and libraries
-#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
-#target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
-rosbuild_add_executable(${PROJECT_NAME} ros/src/${PROJECT_NAME}.cpp common/src/genericArmCtrl.cpp common/src/RefValJS_PTP.cpp common/src/RefValJS_PTP_Trajectory.cpp common/src/TimeStamp.cpp)
-rosbuild_add_executable(cob_simulation_tester ros/src/cob_simulation_tester.cpp)
 
-rosbuild_link_boost(${PROJECT_NAME} thread)
-#target_link_libraries(example ${PROJECT_NAME})
+# executables
+find_package(Boost REQUIRED thread)
+include_directories(${Boost_INCLUDE_DIRS}) #SYSTEM ?
+
+find_package(orocos_kinematics_dynamics REQUIRED)
+include_directories(${orocos_kinematics_dynamics_INCLUDE_DIRS})
+link_directories(${orocos_kinematics_dynamics_LIBRARY_DIRS})
+
+add_executable(${PROJECT_NAME} ros/src/${PROJECT_NAME}.cpp common/src/genericArmCtrl.cpp common/src/RefValJS_PTP.cpp common/src/RefValJS_PTP_Trajectory.cpp common/src/TimeStamp.cpp)
+add_executable(cob_simulation_tester ros/src/cob_simulation_tester.cpp)
+
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+
+
+# install all manifests; for compatibility with old build system
+install(FILES manifest-to-install.xml 
+	DESTINATION share/cob_srvs RENAME manifest.xml)
